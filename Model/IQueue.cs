@@ -1,10 +1,10 @@
 namespace Servidor.Model
 {
-    interface IQueue
+    public interface IQueue
     {
         void Push(IRequest request);
 
-        IRequest pop();
+        IRequest Pop();
 
         void SortByPriority();
     }

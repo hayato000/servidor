@@ -1,4 +1,6 @@
 ﻿using System;
+using Servidor.Logic;
+using Servidor.Model;
 
 namespace Servidor
 {
@@ -6,7 +8,12 @@ namespace Servidor
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Starting Servidor!");
+            RequestMaker maker = new RequestMaker();
+            RequestQueue requestQ = maker.MakeRequests();
+
+            while(requestQ.)
+
         }
     }
 }

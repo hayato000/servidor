@@ -4,28 +4,19 @@ namespace Servidor.Model
 {
     public class Request :  IRequest 
     {
-        private Priority priority;
-        public Priority Priority { get; }
-
         private Guid requestId;
         public Guid RequestId { get; }
+        private Priority priority;
+        Priority IRequest.Priority { get => priority; set => value = priority; }
 
-        Priority IRequest.priority => throw new NotImplementedException();
-
-        public Request(Priority priority)
+        public Request()
         {
             this.requestId = Guid.NewGuid();
-            this.priority = priority;
         }
         
-        void Process()  
-        {
-            Console.WriteLine($"Request {RequestId} with priority {Priority} have been processed");
-        }
-
         void IRequest.Process()
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine($"Request {RequestId} with priority {priority} have been processed");
         }
     }
 }

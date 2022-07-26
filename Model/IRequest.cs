@@ -1,8 +1,8 @@
 namespace Servidor.Model
 {
-    interface IRequest
+    public interface IRequest
     {
-        Priority priority { get; }
+        Priority Priority { get; set; }
         void Process();
     }
 }

@@ -1,6 +1,6 @@
 namespace Servidor.Model
 {
-    enum Priority
+    public enum Priority
     {
         Low,
         High
