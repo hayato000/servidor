@@ -4,17 +4,28 @@ using System.Collections.Generic;
 
 namespace Servidor.Model
 {
-    public class RequestQueue : IQueue
+    public class RequestQueue : Queue<Request>, IQueue 
     {
-        private Queue<IRequest> currentQueue;
+        private Queue<Request> currentQueue;
 
-        Queue<IRequest> CurrentQueue { get => currentQueue; set => currentQueue = value; }
+        Queue<Request> CurrentQueue { get => currentQueue; set => currentQueue = value; }
 
+        public RequestQueue()
+        {
+            this.currentQueue = new Queue<Request>();
+        }
+
+        public RequestQueue(Queue<Request> requestQ)
+        {
+            this.currentQueue = requestQ;
+        }
+        /*
         public IRequest Pop()
         {
             Console.WriteLine($"Popping request");
             return new Request();
         }
+        */
 
         public void SortByPriority()
         {
@@ -24,11 +35,25 @@ namespace Servidor.Model
         public void Push(IRequest request)
         {
             Console.WriteLine($"Push request");
+            currentQueue.Enqueue((Request) request);
         }
 
-        IRequest IQueue.Pop()
+        public IRequest Pop()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Pop request");
+            return currentQueue.Dequeue();
         }
+
+        public void PrintStatus()
+        {
+            Console.WriteLine($"Current Request:");
+
+            foreach(Request currentR in currentQueue)
+            {
+                Console.WriteLine(currentR.ToString());
+            }
+
+        }
+
     }
 }
