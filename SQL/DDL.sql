@@ -20,11 +20,13 @@ primary key (codice)
 
 create table viaggi
 (vid integer,
+numerovolo integer,
 stato char(20),
 data date,
 aereo char(10),
 primary key (vid)
 foreign key (aereo) references aerei on delete no action
+foreign key (numerovolo) references voli on delete no action
 );
 
 create table aerei

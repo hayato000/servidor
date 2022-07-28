@@ -16,8 +16,6 @@ namespace Servidor.Logic
             requestQ.Push(new Request(Priority.Low));
             requestQ.Push(new Request(Priority.High));
 
-            requestQ.PrintStatus();
-
             return requestQ;
         }
     }

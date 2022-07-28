@@ -1,11 +1,17 @@
 select avg(vl.durata)
 from voli vl 
-left join viaggi vg on vg.numerovolo = ar.codice
+inner join viaggi vg on vg.numerovolo = ar.codice
 where vl.apartenza = "FRA" 
     and ar.aarrivo in 
         (select codice from aeroporti where nazione = 'USA')
-    and (select count(vid) 
-            from viaggi vg
-            left join aerei ae on vg.matricola = ae.matricola  
-            ) > 10
-
+    and vg.matricola in  
+        (select matricola 
+         from aerei ae
+         where ae.matricola = vg.matricola 
+          and modello in 
+          (select modello
+           from aerei int_aerei
+           where int_aerei.matricola = ae.matricola
+           group by modello
+           having count(*) > 10)
+       )
